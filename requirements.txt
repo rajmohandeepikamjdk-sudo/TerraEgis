@@ -1,9 +1,9 @@
-streamlit>=1.28.0
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-shapely==2.0.2
-requests==2.31.0
-python-multipart==0.0.6
+streamlit
+fastapi
+uvicorn
+shapely
+requests
+python-multipart
 pandas
 folium
 streamlit-folium
