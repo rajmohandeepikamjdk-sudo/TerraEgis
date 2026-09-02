@@ -1,0 +1,501 @@
+:root {
+  --bg-main: #f8fafc;
+  --bg-bento: #ffffff;
+  --bg-bento-hover: #f1f5f9;
+  --bg-bento-active: rgba(5, 150, 105, 0.08);
+  
+  --border-bento: #e2e8f0;
+  --border-bento-hover: #cbd5e1;
+  --border-emerald: #059669;
+  
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  
+  --accent-emerald: #059669;
+  --accent-emerald-glow: rgba(5, 150, 105, 0.15);
+  --accent-cyan: #0891b2;
+  --accent-blue: #2563eb;
+  --accent-indigo: #4f46e5;
+  --accent-amber: #d97706;
+  --accent-rose: #e11d48;
+  --accent-purple: #7c3aed;
+  
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --radius-bento: 14px;
+  --radius-inner: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.5;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* App Container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background: var(--bg-main);
+}
+
+/* Header */
+.app-header {
+  height: 56px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-bento);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  width: 32px;
+  height: 32px;
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  font-family: var(--font-heading);
+}
+
+.brand-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  color: #0f172a;
+}
+
+.brand-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: rgba(5, 150, 105, 0.1);
+  color: var(--accent-emerald);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.header-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  border: 1px solid var(--border-bento);
+  font-weight: 500;
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-emerald);
+  box-shadow: 0 0 6px var(--accent-emerald);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+/* ==========================================
+   LIGHT BENTO GRID LAYOUT SYSTEM
+   ========================================== */
+.bento-container {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: calc(100vh - 56px);
+}
+
+/* Main Bento Top Row: 3 Columns */
+.bento-top-row {
+  display: grid;
+  grid-template-columns: 330px 1fr 380px;
+  gap: 12px;
+  min-height: 460px;
+  flex: 1;
+}
+
+/* Bottom Bento Row: 3 Modular Cards */
+.bento-bottom-row {
+  display: grid;
+  grid-template-columns: 330px 1fr 380px;
+  gap: 12px;
+  min-height: 230px;
+}
+
+/* Individual Bento Card Tile */
+.bento-card {
+  background: var(--bg-bento);
+  border: 1px solid var(--border-bento);
+  border-radius: var(--radius-bento);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bento-card:hover {
+  border-color: var(--border-bento-hover);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+}
+
+/* Bento Card Header */
+.bento-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.bento-title-group {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.bento-title-tag {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #f1f5f9;
+  color: #334155;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.bento-title {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text-primary);
+}
+
+.bento-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #f1f5f9;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-bento);
+}
+
+.bento-body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Map Bento Card (Hero Cell) */
+.bento-card-map {
+  padding: 0;
+  border-radius: var(--radius-bento);
+  position: relative;
+  min-height: 460px;
+}
+
+/* Form inputs styling */
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.form-input, .form-select {
+  width: 100%;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 12.5px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus, .form-select:focus {
+  border-color: var(--accent-emerald);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
+  background: #ffffff;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 10px 14px;
+  background: #059669;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13.5px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(5, 150, 105, 0.2);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #047857;
+  box-shadow: 0 4px 8px rgba(5, 150, 105, 0.3);
+}
+
+/* Candidate Card in Bento List */
+.bento-candidate-item {
+  background: #f8fafc;
+  border: 1px solid var(--border-bento);
+  border-radius: var(--radius-inner);
+  padding: 9px 11px;
+  margin-bottom: 7px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bento-candidate-item:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.bento-candidate-item.selected {
+  background: rgba(5, 150, 105, 0.06);
+  border-color: var(--accent-emerald);
+}
+
+/* Stat Box Grid */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 7px;
+}
+
+.stat-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 7px 9px;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.stat-value {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Reason Badges */
+.reason-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 7px 9px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  font-size: 11.5px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.reason-good {
+  border-left: 3px solid var(--accent-emerald);
+  background: rgba(5, 150, 105, 0.04);
+}
+
+.reason-warn {
+  border-left: 3px solid var(--accent-amber);
+  background: rgba(217, 119, 6, 0.04);
+}
+
+.reason-bad {
+  border-left: 3px solid var(--accent-rose);
+  background: rgba(225, 29, 72, 0.04);
+}
+
+/* Layer Control Floating Box */
+.layer-controls-overlay {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-bento);
+  border-radius: 10px;
+  padding: 10px 12px;
+  z-index: 1000;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  max-width: 230px;
+}
+
+.layer-control-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 7px;
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.layer-color-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+}
+
+/* Analysis Loading Screen */
+.analyzing-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.scanner-ring {
+  width: 70px;
+  height: 70px;
+  border: 3px solid rgba(5, 150, 105, 0.15);
+  border-top-color: var(--accent-emerald);
+  border-right-color: var(--accent-cyan);
+  border-radius: 50%;
+  animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.steps-list {
+  max-width: 380px;
+  width: 100%;
+}
+
+.step-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  padding: 4px 0;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+
+.step-row.active {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.step-row.done {
+  color: var(--accent-emerald);
+}
+
+/* Custom Popup for Leaflet Light Theme */
+.leaflet-popup-content-wrapper {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.leaflet-popup-tip {
+  background: #ffffff !important;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
