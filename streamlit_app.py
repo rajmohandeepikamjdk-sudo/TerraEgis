@@ -95,9 +95,10 @@ with tab_map:
     st.subheader("Geospatial Map & Feature Layers")
     
     # Initialize Folium Map centered on study area
+    center_lon, center_lat = study_area["center"]
     m = folium.Map(
-        location=[study_area["lat"], study_area["lon"]],
-        zoom_start=study_area["zoom"],
+        location=[center_lat, center_lon],
+        zoom_start=study_area.get("zoom", 11),
         tiles="CartoDB dark_matter"
     )
     
